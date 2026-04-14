@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Attack Detector</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="tag">String Matching Based Cyber Attack Detection</p>
+      <h1>Cyber Attack Detector</h1>
+      <p>
+        Enter a network data string, choose an algorithm, and detect attack technique names from
+        MITRE ATT&CK Enterprise.
+      </p>
+    </section>
+
+    <section class="card input-card">
+      <div class="section-head">
+        <h2>Input Data</h2>
+        <button id="sampleBtn" class="small-btn" type="button">Use Sample</button>
+      </div>
+
+      <label for="trafficInput">Enter string data</label>
+      <textarea
+        id="trafficInput"
+        rows="5"
+        placeholder="Example: phishing attempt used valid accounts and command and scripting interpreter"
+      ></textarea>
+
+      <h3>Choose Algorithm</h3>
+      <div class="algorithm-list">
+        <label>
+          <input type="radio" name="algorithmMode" value="kmp" checked>
+          <span>Smart and Efficient - KMP</span>
+        </label>
+
+        <label>
+          <input type="radio" name="algorithmMode" value="boyer-moore">
+          <span>Faster Searching - Boyer-Moore</span>
+        </label>
+
+        <label>
+          <input type="radio" name="algorithmMode" value="aho-corasick">
+          <span>Multiple Detection - Aho-Corasick</span>
+        </label>
+      </div>
+
+      <div class="button-row">
+        <button id="detectBtn" type="button">Detect Threat</button>
+        <button id="compareBtn" class="outline-btn" type="button">Compare All Algorithms</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card result-card">
+        <h2>Threat Result</h2>
+        <p><strong>Algorithm Used:</strong> <span id="algorithmUsed">-</span></p>
+        <p><strong>Detected Keywords:</strong> <span id="keywordsFound">-</span></p>
+        <p><strong>Threat Status:</strong> <span id="threatStatus">Waiting for input</span></p>
+        <p><strong>Message:</strong> <span id="threatMessage">Enter a string and click detect.</span></p>
+      </article>
+
+      <article class="card result-card">
+        <h2>Quick Summary</h2>
+        <p><strong>Total Known Patterns:</strong> <span id="patternCount">-</span></p>
+        <p><strong>Pattern Source:</strong> <span id="keywordSource">Loading...</span></p>
+        <p><strong>Input Length:</strong> <span id="inputLength">-</span></p>
+        <p><strong>Best Speed:</strong> <span id="bestSpeed">-</span></p>
+        <p><strong>Best For Many Patterns:</strong> Aho-Corasick</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div>
+          <h2>Algorithm Comparison</h2>
+          <p class="muted">Comparison is calculated from the current input string.</p>
+        </div>
+      </div>
+
+      <div id="comparisonTable" class="table-box">
+        <p class="empty">Run comparison to see all algorithm results.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Visualization Graphs</h2>
+      <p class="muted">
+        These graphs compare KMP, Boyer-Moore, and Aho-Corasick directly. Lower values are better for
+        time and memory. Higher values are better for score-based graphs.
+      </p>
+
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Execution Time Graph</h3>
+          <canvas id="timeChart" width="500" height="300"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Memory Usage Graph</h3>
+          <canvas id="memoryChart" width="500" height="300"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Accuracy Graph</h3>
+          <canvas id="accuracyChart" width="500" height="300"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Overall Score</h3>
+          <canvas id="overallChart" width="500" height="300"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
